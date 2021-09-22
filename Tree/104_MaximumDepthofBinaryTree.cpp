@@ -1,26 +1,22 @@
-#include "Tree.h"
 #include <queue>
+#include "Tree.h"
 
-class Solution
-{
-public:
-    int maxDepthIteration(TreeNode *root)
-    {
+class Solution {
+   public:
+    int maxDepthIteration(TreeNode* root) {
         if (root == nullptr)
             return 0;
 
-        queue<TreeNode *> que;
+        queue<TreeNode*> que;
         que.push(root);
 
         int result = 0;
-        while (!que.empty())
-        {
+        while (!que.empty()) {
             int size = que.size();
             result++;
 
-            for (int i = 0; i < size; i++)
-            {
-                TreeNode *cur = que.front();
+            for (int i = 0; i < size; i++) {
+                TreeNode* cur = que.front();
                 que.pop();
 
                 if (cur->left)
@@ -32,22 +28,19 @@ public:
         return result;
     }
 
-    int maxDepthRecursion(TreeNode *root)
-    {
-        if (root == nullptr)
-        {
+    int maxDepthRecursion(TreeNode* root) {
+        if (root == nullptr) {
             return 0;
         }
 
-        return 1 +
-               max(maxDepthIteration(root->left), maxDepthIteration(root->right));
+        return 1 + max(maxDepthIteration(root->left),
+                       maxDepthIteration(root->right));
     }
 };
 
-int main()
-{
+int main() {
     vector<int> data = {1, 2, 3, null, 4, 5, 6, 7, null};
-    TreeNode *root = NULL;
+    TreeNode* root = NULL;
     root = CreateTree(data);
 
     Solution s;
